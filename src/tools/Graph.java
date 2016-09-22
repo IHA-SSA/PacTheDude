@@ -62,5 +62,8 @@ public class Graph {
 	public int Y() {
 		return Y;
 	}
+	public int V(){
+		return X*Y;
+	}
 
 }
