@@ -9,6 +9,7 @@ import truelecter.problem_solving.State;
 import truelecter.problem_solving.pacthedude.BFSSolver;
 import truelecter.problem_solving.pacthedude.state.WorldState;
 import truelecter.problem_solving.pacthedude.state.WorldState.Location;
+import voidstorm.BreadthFirstPaths;
 import voidstorm.LinkedQueue;
 import acm.graphics.GPolygon;
 import acm.program.GraphicsProgram;
@@ -85,17 +86,15 @@ public class World extends GraphicsProgram {
         //
         // }
         // });
-        // after rework
-        // Graph labirinth = new Graph("labirinth_test.txt");
-        // BreadthFirstPaths bfs = new BreadthFirstPaths(labirinth, 0 + 9 *
-        // labirinth.X());
-        // System.out.println("Drawing...");
-        // visualize(bfs.pathTo(aim_x + aim_y * labirinth.Y()), labirinth, 0, 9,
-        // 0, 5);
+//        // after rework
+//        Graph labirinth = new Graph("labirinth_test.txt");
+//        BreadthFirstPaths bfs = new BreadthFirstPaths(labirinth, 0 + 9 * labirinth.X());
+//        System.out.println("Drawing...");
+//        visualize(bfs.pathTo(aim_x + aim_y * labirinth.Y()), labirinth, 0, 9, 3, 2);
         // acm don't want to visualize in another class (
         Graph world = new Graph("labirinth_test.txt");
         Location pacmanLocation = new Location(0, 9);
-        Location diamondLocation = new Location(0, 5);
+        Location diamondLocation = new Location(3, 2);
         WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
 
         BFSSolver solver = new BFSSolver(startingState);

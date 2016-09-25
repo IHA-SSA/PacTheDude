@@ -12,15 +12,17 @@ public class MoveRightAction implements Action {
         if (!(current instanceof WorldState)) {
             throw new IllegalArgumentException("Can't move not in world");
         }
-        return new WorldState((WorldState) current, this, ((WorldState) current).getPacmanLocation().right());
-
+        WorldState state = (WorldState) current;
+        state.mark(state.getPacmanLocation().right());
+        return new WorldState(state, this, state.getPacmanLocation().right());
     }
 
     @Override
     public boolean applicable(State current) {
         if (current instanceof WorldState) {
             WorldState world = (WorldState) current;
-            return WorldUtils.rightIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y);
+            return WorldUtils.rightIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y)
+                    && !world.marked(world.getPacmanLocation().right());
         }
         return false;
     }

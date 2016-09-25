@@ -12,14 +12,17 @@ public class MoveLeftAction implements Action {
         if (!(current instanceof WorldState)) {
             throw new IllegalArgumentException("Can't move not in world");
         }
-        return new WorldState((WorldState) current, this, ((WorldState) current).getPacmanLocation().left());
+        WorldState state = (WorldState) current;
+        state.mark(state.getPacmanLocation().left());
+        return new WorldState(state, this, state.getPacmanLocation().left());
     }
 
     @Override
     public boolean applicable(State current) {
         if (current instanceof WorldState) {
             WorldState world = (WorldState) current;
-            return WorldUtils.leftIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y);
+            return WorldUtils.leftIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y)
+                    && !world.marked(world.getPacmanLocation().left());
         }
         return false;
     }

@@ -47,8 +47,10 @@ public class BFSSolver extends Solver {
         worldStates.enqueue(currentState);
 
         State finish = null;
-
+        long totalActions = 0;
+        
         while (!worldStates.isEmpty()) {
+            totalActions++;
             State current = worldStates.dequeue();
             if (goalReached(current)) {
                 finish = current;
@@ -59,7 +61,7 @@ public class BFSSolver extends Solver {
                 worldStates.enqueue(state);
             }
         }
-
+        System.out.println(totalActions);
         return finish;
     }
 

@@ -8,16 +8,23 @@ public class WorldState extends State {
     private Location pacLocation;
     private Location diamondLocation;
     private Graph world;
+    private boolean[] markedVertex;
 
-    public WorldState(WorldState prev, Action prevAction, Location pacmanLocation){
+    public WorldState(WorldState prev, Action prevAction, Location pacmanLocation) {
         this(prev, prevAction, pacmanLocation, prev.diamondLocation, prev.world);
     }
-    
-    public WorldState(WorldState prev, Action prevAction, Location pacmanLocation, Location diamondLocation, Graph world) {
+
+    public WorldState(WorldState prev, Action prevAction, Location pacmanLocation, Location diamondLocation,
+            Graph world) {
         super(prev, prevAction);
         pacLocation = pacmanLocation;
         this.diamondLocation = diamondLocation;
         this.world = world;
+        if (prev != null) {
+            markedVertex = prev.markedVertex;
+        } else {
+            markedVertex = new boolean[world.V()];
+        }
     }
 
     public Location getPacmanLocation() {
@@ -27,9 +34,25 @@ public class WorldState extends State {
     public Location getDiamondLocation() {
         return diamondLocation;
     }
-    
-    public Graph getWorld(){
+
+    public Graph getWorld() {
         return world;
+    }
+
+    public boolean marked(int x, int y) {
+        return markedVertex[x + y * world.X()];
+    }
+
+    public boolean marked(Location l) {
+        return marked(l.x, l.y);
+    }
+
+    public void mark(int x, int y) {
+        markedVertex[x + y * world.X()] = true;
+    }
+
+    public void mark(Location l) {
+        mark(l.x, l.y);
     }
 
     public static class Location {
