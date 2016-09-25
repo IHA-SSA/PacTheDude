@@ -66,11 +66,9 @@ public class World extends GraphicsProgram {
 			}
 			sides.clear();
 			if (!top && !bottom && !left && !right) {
-				add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top,
-						right, bottom, left, true));
+				//add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, true));
 			} else {
-				add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top,
-						right, bottom, left, false));
+				add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, false));
 			}
 		}
 	}
