@@ -14,7 +14,9 @@ public class Graph {
 	public Graph(String fileName) {
 		Scanner sc = null;
 		try {
-			sc = new Scanner(new File(fileName));
+		    File toScan = new File(fileName);
+		    System.out.println("Trying to read: "+toScan.getAbsolutePath());
+			sc = new Scanner(toScan);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
