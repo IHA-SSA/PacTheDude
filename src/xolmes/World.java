@@ -94,7 +94,7 @@ public class World extends GraphicsProgram {
         // acm don't want to visualize in another class (
         Graph world = new Graph("labirinth_test.txt");
         Location pacmanLocation = new Location(0, 18);
-        Location diamondLocation = new Location(0, 0);
+        Location diamondLocation = new Location(16, 0);
         WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
 
         BFSSolver solver = new BFSSolver(startingState);
@@ -182,7 +182,7 @@ public class World extends GraphicsProgram {
             if (!top && !bottom && !left && !right) {
                  //add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, true));
             } else {
-                add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, false));
+                add(wc.createBlock2(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, false));
             }
         }
     }

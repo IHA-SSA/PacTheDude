@@ -93,7 +93,56 @@ public class WorldCreator {
 	}
 	public GCompound createBlock2(int x,int y, boolean top, boolean right, boolean bottom, boolean left, boolean border){
 		GCompound block = new GCompound();
+		if(border){
+			GLine border_01 = new GLine(x*World.BLOCK_SIZE, y*World.BLOCK_SIZE, x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE);
+			border_01.setColor(border_color);
+			block.add(border_01);
+			GLine border_02 = new GLine(x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE, x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE);
+			border_02.setColor(border_color);
+			block.add(border_02);
+			GLine border_03 = new GLine(x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE, x*World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE);
+			border_03.setColor(border_color);
+			block.add(border_03);
+			GLine border_04 = new GLine(x*World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE, x*World.BLOCK_SIZE, y*World.BLOCK_SIZE);
+			border_04.setColor(border_color);
+			block.add(border_04);
+		}
 		
+		if(top){
+		
+		}
+		else {
+			GLine line_09 = new GLine(x*World.BLOCK_SIZE, y*World.BLOCK_SIZE, x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE);
+			line_09.setColor(line_color);
+			block.add(line_09);
+		}
+		if(right){
+			
+		}
+		else {
+			GLine line_12 = new GLine(x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE, x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE);
+			line_12.setColor(line_color);
+			block.add(line_12);
+		}
+		
+		if(bottom){
+			
+		}
+		else {
+			GLine line_10 = new GLine(x*World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE, x*World.BLOCK_SIZE + World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE);
+			line_10.setColor(line_color);
+			block.add(line_10);
+		}
+		
+		if(left){
+			
+		}
+		else {
+			GLine line_11 = new GLine(x*World.BLOCK_SIZE, y*World.BLOCK_SIZE, x*World.BLOCK_SIZE, y*World.BLOCK_SIZE + World.BLOCK_SIZE);
+			line_11.setColor(line_color);
+			block.add(line_11);
+		}
+
 		return block;
 	}
 }
