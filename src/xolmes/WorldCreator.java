@@ -91,6 +91,9 @@ public class WorldCreator {
 
 		return block;
 	}
-	
-	
+	public GCompound createBlock2(int x,int y, boolean top, boolean right, boolean bottom, boolean left, boolean border){
+		GCompound block = new GCompound();
+		
+		return block;
+	}
 }
