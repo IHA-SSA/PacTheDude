@@ -16,14 +16,14 @@ import acm.program.GraphicsProgram;
 
 public class World extends GraphicsProgram {
 
-    public static final int BLOCK_SIZE = 60;
-    private static final Color BACKGROUND_COLOR = Color.WHITE;
+    public static final int BLOCK_SIZE = 30;
+    private static final Color BACKGROUND_COLOR = Color.BLACK;
     WorldCreator wc;
     Graph labirinth;
     PacTheDude pac;
     GPolygon diamond;
     int aim_x = 0;
-    int aim_y = 5;
+    int aim_y = 0;
 
     public void run() {
         // Initial
@@ -93,8 +93,8 @@ public class World extends GraphicsProgram {
 //        visualize(bfs.pathTo(aim_x + aim_y * labirinth.Y()), labirinth, 0, 9, 3, 2);
         // acm don't want to visualize in another class (
         Graph world = new Graph("labirinth_test.txt");
-        Location pacmanLocation = new Location(0, 9);
-        Location diamondLocation = new Location(3, 2);
+        Location pacmanLocation = new Location(0, 18);
+        Location diamondLocation = new Location(0, 0);
         WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
 
         BFSSolver solver = new BFSSolver(startingState);
@@ -180,10 +180,9 @@ public class World extends GraphicsProgram {
             }
             sides.clear();
             if (!top && !bottom && !left && !right) {
-                // add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top,
-                // right, bottom, left, true));
+                 add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, true));
             } else {
-                add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, false));
+                add(wc.createBlock(i % labirinth.X(), i / labirinth.X(), top, right, bottom, left, true));
             }
         }
     }
@@ -213,14 +212,14 @@ public class World extends GraphicsProgram {
             int last_y = pac.getY();
             int i = arr2.get(k);
             // DOWN
-            if (prev_step - i == 10) {
+            if (prev_step - i == labirinth.X()) {
                 pac.move(pac.getX(), pac.getY() - 1);
                 // add(new GLine(last_x*BLOCK_SIZE +BLOCK_SIZE/2,
                 // last_y*BLOCK_SIZE +BLOCK_SIZE/2,last_x*BLOCK_SIZE
                 // +BLOCK_SIZE/2, pac.getY()*BLOCK_SIZE +BLOCK_SIZE/2));
             }
             // TOP
-            if (prev_step - i == -10) {
+            if (prev_step - i == -labirinth.X()) {
                 pac.move(pac.getX(), pac.getY() + 1);
                 // add(new GLine(last_x*BLOCK_SIZE +BLOCK_SIZE/2,
                 // last_y*BLOCK_SIZE +BLOCK_SIZE/2,last_x*BLOCK_SIZE
@@ -241,7 +240,7 @@ public class World extends GraphicsProgram {
                 // +BLOCK_SIZE/2, last_y*BLOCK_SIZE +BLOCK_SIZE/2));
             }
             prev_step = i;
-            // System.out.println("GOTO " + i);
+             System.out.println("GOTO " + i);
         }
         this.remove(diamond);
     }
