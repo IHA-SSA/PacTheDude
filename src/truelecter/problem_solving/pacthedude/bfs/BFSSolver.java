@@ -1,12 +1,12 @@
-package truelecter.problem_solving.pacthedude;
+package truelecter.problem_solving.pacthedude.bfs;
 
 import java.util.List;
 import java.util.Queue;
 
 import truelecter.problem_solving.Solver;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.action.*;
-import truelecter.problem_solving.pacthedude.state.*;
+import truelecter.problem_solving.pacthedude.bfs.action.*;
+import truelecter.problem_solving.pacthedude.bfs.state.*;
 import voidstorm.LinkedQueue;
 
 public class BFSSolver extends Solver {

@@ -1,4 +1,4 @@
-package truelecter.problem_solving.pacthedude.state;
+package truelecter.problem_solving.pacthedude.bfs.state;
 
 import truelecter.problem_solving.Action;
 import truelecter.problem_solving.State;

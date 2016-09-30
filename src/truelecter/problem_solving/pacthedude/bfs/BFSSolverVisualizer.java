@@ -1,10 +1,10 @@
-package truelecter.problem_solving.pacthedude;
+package truelecter.problem_solving.pacthedude.bfs;
 
 import acm.program.GraphicsProgram;
 import tools.Graph;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.state.WorldState;
-import truelecter.problem_solving.pacthedude.state.WorldState.Location;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
 import voidstorm.LinkedQueue;
 import xolmes.World;
 

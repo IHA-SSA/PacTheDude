@@ -103,7 +103,7 @@ public class PacTheDude {
 				dot.setColor(Color.red);
 				dot.setFillColor(Color.red);
 			}
-			//path.add(dot);
+			path.add(dot);
 			obj.sendForward();
 		}
 	}

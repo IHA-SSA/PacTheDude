@@ -6,9 +6,9 @@ import java.util.Random;
 
 import tools.Graph;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.BFSSolver;
-import truelecter.problem_solving.pacthedude.state.WorldState;
-import truelecter.problem_solving.pacthedude.state.WorldState.Location;
+import truelecter.problem_solving.pacthedude.bfs.BFSSolver;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
 import voidstorm.BreadthFirstPaths;
 import voidstorm.LinkedQueue;
 import acm.graphics.GPolygon;
@@ -104,7 +104,6 @@ public class World extends GraphicsProgram {
             System.out.println("Solution found!");
             LinkedQueue<State> path = BFSSolver.path(finish);
             System.out.println(path.size());
-
             LinkedQueue<Integer> toDraw = new LinkedQueue<>();
             for (State s : path) {
                 if (s instanceof WorldState) {
@@ -112,7 +111,6 @@ public class World extends GraphicsProgram {
                     toDraw.enqueue(state.getPacmanLocation().x + state.getPacmanLocation().y * world.X());
                 }
             }
-
             visualize(toDraw, world, pacmanLocation.x, pacmanLocation.y, diamondLocation.x, diamondLocation.y);
         } else {
             System.out.println("Unable to find solution!");

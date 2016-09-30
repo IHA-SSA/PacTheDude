@@ -1,11 +1,11 @@
-package truelecter.problem_solving.pacthedude.action;
+package truelecter.problem_solving.pacthedude.bfs.action;
 
 import truelecter.problem_solving.Action;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.state.WorldState;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 import xolmes.WorldUtils;
 
-public class MoveRightAction implements Action {
+public class MoveDownAction implements Action {
 
     @Override
     public State perform(State current) {
@@ -13,16 +13,16 @@ public class MoveRightAction implements Action {
             throw new IllegalArgumentException("Can't move not in world");
         }
         WorldState state = (WorldState) current;
-        state.mark(state.getPacmanLocation().right());
-        return new WorldState(state, this, state.getPacmanLocation().right());
+        state.mark(state.getPacmanLocation().down());
+        return new WorldState(state, this, state.getPacmanLocation().down());
     }
 
     @Override
     public boolean applicable(State current) {
         if (current instanceof WorldState) {
             WorldState world = (WorldState) current;
-            return WorldUtils.rightIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y)
-                    && !world.marked(world.getPacmanLocation().right());
+            return WorldUtils.bottomIsClear(world.getWorld(), world.getPacmanLocation().x, world.getPacmanLocation().y)
+                    && !world.marked(world.getPacmanLocation().down());
         }
         return false;
     }

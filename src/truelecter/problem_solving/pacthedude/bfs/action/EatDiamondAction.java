@@ -1,9 +1,9 @@
-package truelecter.problem_solving.pacthedude.action;
+package truelecter.problem_solving.pacthedude.bfs.action;
 
 import truelecter.problem_solving.Action;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.state.DiamondEatenState;
-import truelecter.problem_solving.pacthedude.state.WorldState;
+import truelecter.problem_solving.pacthedude.bfs.state.DiamondEatenState;
+import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 
 public class EatDiamondAction implements Action {
 
