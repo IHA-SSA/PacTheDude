@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import tools.Graph;
+import truelecter.problem_solving.Solver;
 import truelecter.problem_solving.State;
 import truelecter.problem_solving.pacthedude.bfs.BFSSolver;
+import truelecter.problem_solving.pacthedude.bfs.DFSSolver;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
 import voidstorm.BreadthFirstPaths;
@@ -97,7 +99,7 @@ public class World extends GraphicsProgram {
         Location diamondLocation = new Location(16, 0);
         WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
 
-        BFSSolver solver = new BFSSolver(startingState);
+        Solver solver = new DFSSolver(startingState);
         State finish = solver.solve();
 
         if (finish != null) {
