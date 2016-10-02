@@ -10,10 +10,7 @@ import voidstorm.LinkedQueue;
 public abstract class BFSSolver extends Solver {
 
     public BFSSolver(Iterable<Action> actions, State start) {
-        super(start);
-        for (Action action : actions) {
-            addAction(action);
-        }
+        super(actions, start);
     }
 
     @Override

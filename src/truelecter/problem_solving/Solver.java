@@ -23,6 +23,13 @@ public abstract class Solver {
     public Solver(State start) {
         this.currentState = start;
     }
+    
+    public Solver(Iterable<Action> actions, State start){
+        this(start);
+        for (Action action : actions) {
+            addAction(action);
+        }
+    }
 
     protected void addAction(Action a) {
         actions.add(a);

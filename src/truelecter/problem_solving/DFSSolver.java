@@ -10,10 +10,7 @@ import truelecter.problem_solving.State;
 public abstract class DFSSolver extends Solver {
 
     public DFSSolver(Iterable<Action> actions, State start) {
-        super(start);
-        for (Action action : actions) {
-            addAction(action);
-        }
+        super(actions, start);
     }
 
     @Override
