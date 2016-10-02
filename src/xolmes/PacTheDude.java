@@ -57,30 +57,25 @@ public class PacTheDude {
 			mouth_opened = false;
 		}
 		else {
-			int angle1 = 0;
-			int angle2 = 0;
+			int angle1 = 0;		
 			//LEFT
 			if(x1 > x2){
-				angle1 = 180;
-				angle2 = 270;
+				angle1 = 225;				
 			}
 			//RIGHT
 			if(x1 < x2) {
-				angle1 = 45;
-				angle2 = 270;
+				angle1 = 45;				
 			}
 			//TOP
 			if(y1 > y2){
-				angle1 = 135;
-				angle2 = 270;
+				angle1 = 135;			
 			}
 			//BOTT
 			if(y1 < y2) {
 				angle1 = 315;
-				angle2 = 270;
 			}
 			
-			GArc arc = new GArc(RADIUS, RADIUS, angle1, angle2);
+			GArc arc = new GArc(RADIUS, RADIUS, angle1, 270);
 			arc.setColor(Color.YELLOW);
 			arc.setFilled(true);
 			arc.setFillColor(Color.YELLOW);

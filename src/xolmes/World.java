@@ -13,10 +13,11 @@ import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
 import voidstorm.BreadthFirstPaths;
 import voidstorm.LinkedQueue;
+import xolmes.tools.WorldAbstractClass;
 import acm.graphics.GPolygon;
 import acm.program.GraphicsProgram;
 
-public class World extends GraphicsProgram {
+public class World extends WorldAbstractClass {
 
     public static final int BLOCK_SIZE = 30;
     private static final Color BACKGROUND_COLOR = Color.BLACK;
@@ -64,8 +65,8 @@ public class World extends GraphicsProgram {
         followThePath(path);
     }
 
-    public void drawWorld() {
-        this.resize(labirinth.X() * BLOCK_SIZE +1, labirinth.Y() * BLOCK_SIZE+1);
+    private void drawWorld() {
+        this.resize(labirinth.X() * BLOCK_SIZE+20, labirinth.Y() * BLOCK_SIZE+65);
         this.setBackground(BACKGROUND_COLOR);
 
         ArrayList<Integer> sides = new ArrayList<Integer>();
@@ -106,18 +107,6 @@ public class World extends GraphicsProgram {
         }
     }
 
-    private void randomMakesMeCrazy() {
-        Random r = new Random();
-        while (true) {
-            int x = r.nextInt(3) - 1;
-            int y = r.nextInt(3) - 1;
-
-            if (pac.getY() + y >= 0 && pac.getX() + x >= 0 && pac.getY() + y <= labirinth.Y() - 1
-                    && pac.getX() + x <= labirinth.X() - 1) {
-                pac.move(pac.getX() + x, pac.getY() + y);
-            }
-        }
-    }
 
     private void followThePath(Iterable<Integer> iterable) {
         LinkedQueue<Integer> arr = (LinkedQueue<Integer>) iterable;
@@ -159,9 +148,10 @@ public class World extends GraphicsProgram {
                 // +BLOCK_SIZE/2, last_y*BLOCK_SIZE +BLOCK_SIZE/2));
             }
             prev_step = i;
-             System.out.println("GOTO " + i);
+            // System.out.println("GOTO " + i);
         }
         this.remove(diamond);
     }
+    
 
 }
