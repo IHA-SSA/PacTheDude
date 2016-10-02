@@ -99,7 +99,7 @@ public class World extends GraphicsProgram {
         Location diamondLocation = new Location(16, 0);
         WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
 
-        Solver solver = new DFSSolver(startingState);
+        Solver solver = new BFSSolver(startingState);
         State finish = solver.solve();
 
         if (finish != null) {
