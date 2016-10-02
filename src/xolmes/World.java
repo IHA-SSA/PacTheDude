@@ -28,95 +28,14 @@ public class World extends GraphicsProgram {
     int aim_y = 0;
 
     public void run() {
-        // Initial
-        // wc = new WorldCreator();
-        // labirinth = new Graph("labirinth_test.txt");
-        // pac = new PacTheDude(0, 9);
-        // drawWorld();
-        // add(pac.getPac());
-        // add(pac.getPath());
-        //
-        // //ADD AIM
-        // diamond = new GPolygon();
-        // diamond.addVertex(BLOCK_SIZE/6, 0);
-        // diamond.addVertex(BLOCK_SIZE/3, BLOCK_SIZE/6);
-        // diamond.addVertex(BLOCK_SIZE/6, BLOCK_SIZE/3);
-        // diamond.addVertex(0, BLOCK_SIZE/6);
-        // diamond.setFilled(true);
-        // diamond.setFillColor(Color.GRAY);
-        // diamond.sendBackward();
-        // add(diamond,aim_x*BLOCK_SIZE + BLOCK_SIZE/3, aim_y*BLOCK_SIZE +
-        // BLOCK_SIZE/3);
-        //
-        // this.getGCanvas().addKeyListener(new KeyListener() {
-        //
-        // @Override
-        // public void keyTyped(KeyEvent e) {
-        //
-        // }
-        //
-        // @Override
-        // public void keyReleased(KeyEvent e) {
-        //
-        // if (e.getKeyChar() == 'w') {
-        // if (pac.getY() > 0) {
-        // pac.move(pac.getX(), pac.getY() - 1);
-        // }
-        // }
-        // if (e.getKeyChar() == 'a') {
-        // if (pac.getX() > 0) {
-        // pac.move(pac.getX() - 1, pac.getY());
-        // }
-        // }
-        // if (e.getKeyChar() == 's') {
-        // if (pac.getY() < labirinth.Y() - 1) {
-        // pac.move(pac.getX(), pac.getY() + 1);
-        // }
-        // }
-        // if (e.getKeyChar() == 'd') {
-        // if (pac.getX() < labirinth.X() - 1) {
-        // pac.move(pac.getX() + 1, pac.getY());
-        // }
-        // }
-        // // TODO Auto-generated method stub
-        //
-        // }
-        //
-        // @Override
-        // public void keyPressed(KeyEvent e) {
-        // // TODO Auto-generated method stub
-        //
-        // }
-        // });
+        
 //        // after rework
 //        Graph labirinth = new Graph("labirinth_test.txt");
 //        BreadthFirstPaths bfs = new BreadthFirstPaths(labirinth, 0 + 9 * labirinth.X());
 //        System.out.println("Drawing...");
 //        visualize(bfs.pathTo(aim_x + aim_y * labirinth.Y()), labirinth, 0, 9, 3, 2);
         // acm don't want to visualize in another class (
-        Graph world = new Graph("labirinth_test.txt");
-        Location pacmanLocation = new Location(0, 18);
-        Location diamondLocation = new Location(16, 0);
-        WorldState startingState = new WorldState(null, null, pacmanLocation, diamondLocation, world);
-
-        Solver solver = new BFSSolver(startingState);
-        State finish = solver.solve();
-
-        if (finish != null) {
-            System.out.println("Solution found!");
-            LinkedQueue<State> path = BFSSolver.path(finish);
-            System.out.println(path.size());
-            LinkedQueue<Integer> toDraw = new LinkedQueue<>();
-            for (State s : path) {
-                if (s instanceof WorldState) {
-                    WorldState state = (WorldState) s;
-                    toDraw.enqueue(state.getPacmanLocation().x + state.getPacmanLocation().y * world.X());
-                }
-            }
-            visualize(toDraw, world, pacmanLocation.x, pacmanLocation.y, diamondLocation.x, diamondLocation.y);
-        } else {
-            System.out.println("Unable to find solution!");
-        }
+        
     }
 
     public void visualize(Iterable<Integer> path, Graph lab, int pacX, int pacY, int aimX, int aimY) {
@@ -146,7 +65,7 @@ public class World extends GraphicsProgram {
     }
 
     public void drawWorld() {
-        this.resize(labirinth.X() * BLOCK_SIZE, labirinth.Y() * BLOCK_SIZE);
+        this.resize(labirinth.X() * BLOCK_SIZE +1, labirinth.Y() * BLOCK_SIZE+1);
         this.setBackground(BACKGROUND_COLOR);
 
         ArrayList<Integer> sides = new ArrayList<Integer>();
