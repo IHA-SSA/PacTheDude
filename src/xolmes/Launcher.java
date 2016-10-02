@@ -9,6 +9,8 @@ import truelecter.problem_solving.pacthedude.bfs.BFSSolver;
 import truelecter.problem_solving.pacthedude.bfs.DFSSolver;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
+import voidstorm.solver.AstarSolver;
+import voidstorm.AStarState;
 import voidstorm.LinkedQueue;
 import xolmes.tools.WorldAbstractClass;
 
@@ -19,7 +21,7 @@ public class Launcher {
 	private HashMap<String, WorldAbstractClass> worlds;
 
 	private final static String map = "PTD_map_01";
-	private final static String name_of_solver = "BFS";
+	private final static String name_of_solver = "AStar";
 
 	public Launcher() {
 
@@ -75,7 +77,9 @@ public class Launcher {
 		solvers.put("DFS", new DFSSolver(startingState));
 		
 		//INIT A* HERE
-		
+		State start = new AStarState(null, null, heroLoc, aimLoc,
+				world, 0);
+		solvers.put("AStar", new AstarSolver(start));
 	}
 
 	private LinkedQueue<Integer> solve(String solver_name) {
@@ -90,6 +94,11 @@ public class Launcher {
 			for (State s : path) {
 				if (s instanceof WorldState) {
 					WorldState state = (WorldState) s;
+					toDraw.enqueue(state.getPacmanLocation().x
+							+ state.getPacmanLocation().y * maps.get(map).X());
+				}
+				else if (s instanceof AStarState) {
+					AStarState state = (AStarState) s;
 					toDraw.enqueue(state.getPacmanLocation().x
 							+ state.getPacmanLocation().y * maps.get(map).X());
 				}
