@@ -1,16 +1,23 @@
 package xolmes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import tools.Graph;
+import truelecter.problem_solving.Action;
 import truelecter.problem_solving.Solver;
 import truelecter.problem_solving.State;
-import truelecter.problem_solving.pacthedude.bfs.BFSSolver;
-import truelecter.problem_solving.pacthedude.bfs.DFSSolver;
+import truelecter.problem_solving.pacthedude.bfs.action.EatDiamondAction;
+import truelecter.problem_solving.pacthedude.bfs.action.MoveDownAction;
+import truelecter.problem_solving.pacthedude.bfs.action.MoveLeftAction;
+import truelecter.problem_solving.pacthedude.bfs.action.MoveRightAction;
+import truelecter.problem_solving.pacthedude.bfs.action.MoveUpAction;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState;
 import truelecter.problem_solving.pacthedude.bfs.state.WorldState.Location;
 import voidstorm.LinkedQueue;
-import xolmes.tools.WorldAbstractClass;
+import xolmes.checkers.actions.MoveUpLeft;
+import xolmes.checkers.actions.MoveUpRight;
+import xolmes.tools.*;
 
 public class Launcher {
 
@@ -18,7 +25,8 @@ public class Launcher {
 	private HashMap<String, Solver> solvers;
 	private HashMap<String, WorldAbstractClass> worlds;
 
-	private final static String map = "PTD_map_01";
+	private ArrayList<Action> actions;
+	private final static String map = "Checkers_map_01";
 	private final static String name_of_solver = "BFS";
 
 	public Launcher() {
@@ -40,12 +48,22 @@ public class Launcher {
 		l.worlds.put("PTD_World", new World());
 		l.worlds.put("Checkers_World", new World_checkers());
 
+		l.actions = new ArrayList<Action>();
+		
 		switch (map) {
 		case "PTD_map_01":
 			w = l.worlds.get("PTD_World");
+			l.actions.add(new MoveDownAction());
+			l.actions.add(new MoveLeftAction());
+			l.actions.add(new MoveRightAction());
+			l.actions.add(new MoveUpAction());
+			l.actions.add(new EatDiamondAction());
 			break;
 		case "Checkers_map_01":
 			w = l.worlds.get("Checkers_World");
+			l.actions.add(new MoveUpLeft());
+			l.actions.add(new MoveUpRight());
+			l.actions.add(new EatDiamondAction());
 			break;
 		default:
 			break;
@@ -53,8 +71,8 @@ public class Launcher {
 		w.start();
 
 		// SET LOCATINS
-		Location heroLoc = new Location(1, l.maps.get(map).Y()-1);
-		Location aimLoc = new Location(l.maps.get(map).X()-2, 0);
+		Location heroLoc = new Location(0, l.maps.get(map).Y()-1);
+		Location aimLoc = new Location(l.maps.get(map).X()-3, 0);
 
 		// SOLVERS
 		l.solvers = new HashMap<String, Solver>();
@@ -71,8 +89,9 @@ public class Launcher {
 	private void initSolvers(Graph world, Location heroLoc, Location aimLoc) {
 		WorldState startingState = new WorldState(null, null, heroLoc, aimLoc,
 				world);
-		solvers.put("BFS", new BFSSolver(startingState));
-		solvers.put("DFS", new DFSSolver(startingState));
+		
+		solvers.put("BFS", new BFSSolver(startingState,actions));
+		solvers.put("DFS", new DFSSolver(startingState,actions));
 		
 		//INIT A* HERE
 		
@@ -101,5 +120,6 @@ public class Launcher {
 		}
 
 	}
-
+	
+	
 }

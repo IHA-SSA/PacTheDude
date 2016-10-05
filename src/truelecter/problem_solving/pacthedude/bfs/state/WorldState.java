@@ -82,6 +82,14 @@ public class WorldState extends State {
         public Location down() {
             return new Location(x, y + 1);
         }
+        
+        public Location upRight() {
+            return new Location(x+1, y - 1);
+        }
+        
+        public Location upLeft() {
+            return new Location(x-1, y - 1);
+        }
 
         public boolean equals(Location l) {
             return l.x == x && l.y == y;

@@ -39,4 +39,22 @@ public class WorldUtils {
         }
         return false;
     }
+    
+    public static boolean upRightIsClear(Graph labirinth, int x, int y) {
+        for (Integer i : labirinth.adj(x + labirinth.X() * y)) {
+            if (i == x + labirinth.X() * y - labirinth.X()+1) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public static boolean upLeftIsClear(Graph labirinth, int x, int y) {
+        for (Integer i : labirinth.adj(x + labirinth.X() * y)) {
+            if (i == x + labirinth.X() * y - labirinth.X()-1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
